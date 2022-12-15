@@ -11,7 +11,7 @@ function userData(){
   inquirer.prompt([
     {
       type: 'input',
-      message: 'Enter employees name?',
+      message: 'Enter employee name?',
       name: 'name',
       validate: function (nameInput) {
         if (nameInput) {
@@ -72,7 +72,8 @@ function userData(){
       .then(answer => {
         console.log(answer.office);
         const teamManager = new Manager (info.name, info.id, info.email, info.position, answer.office)
-        teamMembers.push(teamManager)
+        teamMembers.push(teamManager);
+        addMembers();
       })
     } else if (info.position === 'Engineer'){
       inquirer.prompt([
@@ -92,8 +93,51 @@ function userData(){
       .then(answer => {
         console.log(answer.gitHub);
         const teamEngineer = new Engineer (info.name, info.id, info.email, info.position, answer.gitHub)
+        teamMembers.push(teamEngineer);
+        addMembers();
+      })
+    }else if (info.position === 'Intern') {
+      inquirer.prompt([
+        {
+          type: 'input',
+          message: 'What school was attended?',
+          name: 'school',
+          validate: schoolInput => {
+            if (schoolInput) {
+                return true;
+            } else {
+                return 'Enter what school that was attended.';
+            }
+          }
+        }
+      ])
+      .then(answer=> {
+        console.log(answer.school);
+        const teamIntern = new Intern (info.name, info.id, info.email, info.position, answer.school)
+        teamMembers.push(teamIntern);
+        addMembers();
+      })
+    }
+
+
+    function addMembers() {
+      inquirer.prompt([
+        {
+          type: 'confirm',
+          message: 'Would you like to add another member to the team?',
+          name: 'addMember'
+        }
+      ])
+      .then(add => {
+        if(add.addMember === true){
+          userData(teamMembers);
+        }else{
+          console.log('Current Team: ', teamMembers)
+        }
       })
     }
   })
 
 };
+
+userData();
