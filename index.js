@@ -1,4 +1,7 @@
+const fs = require('fs')
+const inquirer = require('inquirer')
 
+const teamMembers = []
 
 function userData(){
   inquirer.prompt([
@@ -46,5 +49,5 @@ function userData(){
       },
 
   ])
-  
+
 };
