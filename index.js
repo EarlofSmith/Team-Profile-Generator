@@ -74,7 +74,26 @@ function userData(){
         const teamManager = new Manager (info.name, info.id, info.email, info.position, answer.office)
         teamMembers.push(teamManager)
       })
-    } 
+    } else if (info.position === 'Engineer'){
+      inquirer.prompt([
+        {
+          type: 'input',
+          message: 'Enter GitHub name',
+          name: 'gitHub',
+          validate: gitHubInput => {
+            if (gitHubInput) {
+              return true;
+            }else {
+              return 'Enter a GitHub name'
+            }
+          }
+        }
+      ])
+      .then(answer => {
+        console.log(answer.gitHub);
+        const teamEngineer = new Engineer (info.name, info.id, info.email, info.position, answer.gitHub)
+      })
+    }
   })
 
 };
