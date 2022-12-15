@@ -1,8 +1,12 @@
-const fs = require('fs')
-const inquirer = require('inquirer')
+const fs = require('fs');
+const inquirer = require('inquirer');
+const Manager = require('./class/manager');
+const Engineer = require('./class/engineer');
+const Intern = require('./class/intern');
+
 
 const teamMembers = []
-
+// basic prompt that covers all employees
 function userData(){
   inquirer.prompt([
     {
@@ -13,7 +17,7 @@ function userData(){
         if (nameInput) {
             return true;
         } else {
-            return 'Employee name is required.'
+            return 'Employee name is required.';
         }
       }
     },
@@ -25,7 +29,7 @@ function userData(){
           if (idInput) {
               return true;
           } else {
-              return 'Enter employee ID.'
+              return 'Enter employee ID.';
           }
         }
       },
@@ -37,7 +41,7 @@ function userData(){
           if (emailInput) {
               return true;
           } else {
-              return 'Enter employee email.'
+              return 'Enter employee email.';
           }
         }
       },
@@ -49,5 +53,28 @@ function userData(){
       },
 
   ])
+  .then(info => {
+    if (info.position === 'Manager') {
+      inquirer.prompt([
+        {
+          type: 'input',
+          message: 'Enter office number',
+          name: 'office',
+          validate: officeInput => {
+            if (officeInput) {
+                return true;
+            } else {
+                return 'Enter an office number.';
+            }
+          }
+       }
+      ])
+      .then(answer => {
+        console.log(answer.office);
+        const teamManager = new Manager (info.name, info.id, info.email, info.position, answer.office)
+        teamMembers.push(teamManager)
+      })
+    } 
+  })
 
 };
