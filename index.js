@@ -1,21 +1,50 @@
 
 
-
-inquirer
-  .prompt([
+function userData(){
+  inquirer.prompt([
     {
       type: 'input',
-      message: 'What is your name?',
+      message: 'Enter employees name?',
       name: 'name',
+      validate: function (nameInput) {
+        if (nameInput) {
+            return true;
+        } else {
+            return 'Employee name is required.'
+        }
+      }
     },
       {
         type: 'input',
-        message: 'What is your GitHub user name?',
-        name: 'github',
+        message: 'What is your employee ID?',
+        name: 'id',
+        validate: function (idInput) {
+          if (idInput) {
+              return true;
+          } else {
+              return 'Enter employee ID.'
+          }
+        }
       },
       {
         type: 'input',
         message: 'Enter your Email',
-        name: 'questions',
+        name: 'email',
+        validate: function (emailInput) {
+          if (emailInput) {
+              return true;
+          } else {
+              return 'Enter employee email.'
+          }
+        }
       },
+      {
+        type: 'list',
+        message: 'Select employee position',
+        name: 'position',
+        choices: ["Manager", "Engineer", "Intern"],
+      },
+
   ])
+  
+};
