@@ -1,0 +1,32 @@
+
+.navbar-header {
+    background-color: blue;
+    border-style: solid;
+    border-color: red;
+    border-width: 15px;
+    
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.navbar-brand {
+    font-size: 250%;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+.card {
+background-color: red;
+}
+
+.row {
+justify-content: space-around;
+
+}
+
+.card-body {
+    background-color: blue;
+    color: white;
+    text-align: center;
+}
