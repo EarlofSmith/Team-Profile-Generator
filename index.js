@@ -13,7 +13,7 @@ function userData(){
       type: 'input',
       message: 'Enter employee name?',
       name: 'name',
-      validate: function (nameInput) {
+      validate: nameInput => {
         if (nameInput) {
             return true;
         } else {
@@ -25,7 +25,7 @@ function userData(){
         type: 'input',
         message: 'What is your employee ID?',
         name: 'id',
-        validate: function (idInput) {
+        validate: idInput => {
           if (idInput) {
               return true;
           } else {
@@ -37,7 +37,7 @@ function userData(){
         type: 'input',
         message: 'Enter your Email',
         name: 'email',
-        validate: function (emailInput) {
+        validate: emailInput => {
           if (emailInput) {
               return true;
           } else {
