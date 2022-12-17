@@ -1,8 +1,12 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
+const Employee = require('./class/employee')
 const Manager = require('./class/manager');
 const Engineer = require('./class/engineer');
 const Intern = require('./class/intern');
+
+const genTemplate = require('./src/card-template')
+const genHTML = require('./src/createHTML')
 
 
 const teamMembers = []
@@ -59,7 +63,7 @@ function userData(){
         {
           type: 'input',
           message: 'Enter office number',
-          name: 'office',
+          name: 'Office',
           validate: officeInput => {
             if (officeInput) {
                 return true;
@@ -70,8 +74,8 @@ function userData(){
        }
       ])
       .then(answer => {
-        console.log(answer.office);
-        const teamManager = new Manager (info.name, info.id, info.email, info.position, answer.office)
+        console.log(answer.Office);
+        const teamManager = new Manager (info.name, info.id, info.email, info.position, answer.Office)
         teamMembers.push(teamManager);
         addMembers();
       })
@@ -101,7 +105,7 @@ function userData(){
         {
           type: 'input',
           message: 'What school was attended?',
-          name: 'school',
+          name: 'School',
           validate: schoolInput => {
             if (schoolInput) {
                 return true;
@@ -112,8 +116,8 @@ function userData(){
         }
       ])
       .then(answer=> {
-        console.log(answer.school);
-        const teamIntern = new Intern (info.name, info.id, info.email, info.position, answer.school)
+        console.log(answer.School);
+        const teamIntern = new Intern (info.name, info.id, info.email, info.position, answer.School)
         teamMembers.push(teamIntern);
         addMembers();
       })
@@ -133,6 +137,8 @@ function userData(){
           userData(teamMembers);
         }else{
           console.log('Current Team: ', teamMembers)
+          let cardHTML = genTemplate(teamMembers);
+          genHTML(cardHTML)
         }
       })
     }

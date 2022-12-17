@@ -8,14 +8,14 @@ let generateTeam = teamInfo => {
         let lastChoice = teamInfo[i].office || teamInfo[i].gitHub || teamInfo[i].school;
         let set = Object.keys(teamInfo[i]);
         let job = set[4];
-        let choice = job + ':' + lastChoice
+        let choice = job + ': ' + lastChoice
 
         if(job === undefined) {
             choice = "";
         } else if (job === 'gitHub') {
-            choice = (`GitHub: <a herf ='https://www.github.com/${teamInfo[i].gitHub}'> ${teamInfo[i].gitHub}</a>`)
+            choice = (`GitHub: <a href = 'https://www.github.com/${teamInfo[i].gitHub}'> ${teamInfo[i].gitHub}</a>`)
         } else {
-            console.log(choice)
+            console.log('this is', choice)
         }
 
         let {name, id, email, position} = teamInfo[i]
@@ -27,7 +27,7 @@ let generateTeam = teamInfo => {
                   <h6 class="card-subtitle mb-2">${position}</h6>
                 </div>
                 <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Employee id: ${id}</li>
+                  <li class="list-group-item">Employee ID: ${id}</li>
                   <li class="list-group-item">Email: <a href=mailto: ${email}>${email}</a></li>
                   <li class="list-group-item">${choice}</li>
                 </ul>
