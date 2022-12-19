@@ -14,8 +14,11 @@ let generateTeam = teamInfo => {
             choice = "";
         } else if (job === 'gitHub') {
             choice = (`GitHub: <a href = 'https://www.github.com/${teamInfo[i].gitHub}'> ${teamInfo[i].gitHub}</a>`)
-        } else {
-            console.log(choice)
+            emoji = '&#128083;'
+        } else if (job === 'office') {
+            emoji = '&#127861;'
+        } else if (job === 'school') {
+            emoji = '&#127891;'
         }
 
         let {name, id, email, position} = teamInfo[i]
@@ -24,7 +27,7 @@ let generateTeam = teamInfo => {
         <div class="card" style="width: 18rem;">
                 <div class="card-body">
                   <h5 class="card-title">${name}</h5>
-                  <h6 class="card-subtitle mb-2">${position}</h6>
+                  <h6 class="card-subtitle mb-2">${position}${emoji}</h6>
                 </div>
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">Employee ID: ${id}</li>
