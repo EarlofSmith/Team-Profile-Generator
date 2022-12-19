@@ -21,12 +21,14 @@ background-color: red;
 }
 
 .row {
-justify-content: space-around;
+justify-content: space-between;
+
 
 }
 
 .card-body {
     background-color: blue;
     color: white;
+    text-shadow: 1px 1px black;
     text-align: center;
 }

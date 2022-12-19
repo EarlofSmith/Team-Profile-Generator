@@ -15,7 +15,7 @@ let generateTeam = teamInfo => {
         } else if (job === 'gitHub') {
             choice = (`GitHub: <a href = 'https://www.github.com/${teamInfo[i].gitHub}'> ${teamInfo[i].gitHub}</a>`)
         } else {
-            console.log('this is', choice)
+            console.log(choice)
         }
 
         let {name, id, email, position} = teamInfo[i]
